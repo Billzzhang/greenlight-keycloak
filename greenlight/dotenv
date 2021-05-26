@@ -1,0 +1,58 @@
+ALLOW_GREENLIGHT_ACCOUNTS=true
+ALLOW_MAIL_NOTIFICATIONS=true
+CABLE_ADAPTER=postgresql
+CLIENT_ID=greenlightappid
+CLIENT_SECRET=greenlightappsecret
+ENABLE_CACHED_PROVIDER=false
+#GL_CALLBACK_URL=https://gl.$DOMAINNAME
+#GOOGLE_ANALYTICS_TRACKING_ID=UA-xxxxxxxx-3
+#GREENLIGHT_SESSION_DOMAIN=$DOMAINNAME
+LAUNCHER_ALLOW_GREENLIGHT_ACCOUNTS=user1
+LAUNCHER_SECRET=df3fac7902cd635429d45f8404357cffdf0b72228e1405c042138e81805ed4b4a3f1fc290134ac5ee2c9acb80366e4278f86352cbf87f1770da18f9d112be86a
+MAINTENANCE_MODE=false
+#RAILS_LOG_REMOTE_NAME=udp://logs.$DOMAINNAME:1514
+#RAILS_LOG_REMOTE_PORT=1514
+#RAILS_LOG_REMOTE_TAG=gl.$DOMAINNAME.com
+#RAILS_LOG_TO_STDOUT=false
+RAILS_LOG_TO_STDOUT=true
+#RECAPTCHA_SITE_KEY=6LfsrqEUAAAAAK8XENVs3CSfXVmBohyUsqAr0pgd
+#RECAPTCHA_SECRET_KEY=6LfsrqEUAAAAANKLO3SRBw8ZhdJTBqLlyhkMfBQG
+RECORDING_THUMBNAILS=false
+#REDIS_URL=redis://redis.$DOMAINNAME:6379
+RELATIVE_URL_ROOT=/
+ROOM_FEATURES=mute-on-join,require-moderator-approval,anyone-can-start,all-join-moderator
+SECRET_KEY_BASE=25f365833688f81621b0df8fda406dd4a3166408d3d199eb00651e8897d117ee3661a6acf405b06425b491ddbf0062fdc3bac0a50672b31e74698ad9bf641e65
+#SMTP_AUTH=plain
+#SMTP_DOMAIN=$DOMAINNAME
+#SMTP_PASSWORD=password
+#SMTP_PORT=587
+#SMTP_SENDER=no-reply@$DOMAINNAME
+#SMTP_SERVER=smtp.$DOMAINNAME
+#SMTP_STARTTLS_AUTO=true
+#SMTP_USERNAME=postmaster@$DOMAINNAME
+#URL_HOST=gl.$DOMAINNAME
+
+# The endpoint and secret for your BigBlueButton server.
+# Set these if you are running GreenLight on a single BigBlueButton server.
+# You can retrive these by running the following command on your BigBlueButton server:
+#
+#   bbb-conf --secret
+#
+BIGBLUEBUTTON_ENDPOINT=
+BIGBLUEBUTTON_SECRET=
+
+# OpenID Connect Provider (optional)
+#
+# For in-depth steps on setting up a OpenID Connect Login Provider, see:
+#
+#   https://docs.bigbluebutton.org/greenlight/gl-config.html#openid-connect
+#
+OPENID_CONNECT_CLIENT_ID=
+OPENID_CONNECT_CLIENT_SECRET=
+OPENID_CONNECT_ISSUER=
+OPENID_CONNECT_HD=
+OPENID_CONNECT_UID_FIELD=
+
+# OAUTH2_REDIRECT allows you to specify the redirect_url passed to oauth on sign in.
+# It is useful for cases when Greenlight is deployed behind a Network Load Balancer or proxy
+OAUTH2_REDIRECT=

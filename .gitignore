@@ -1,0 +1,17 @@
+.env*
+
+/proxy/log*
+/proxy/ssl*
+/proxy/sites-available*
+/proxy/sites-enabled*
+/proxy/letsencrypt/*
+!/proxy/letsencrypt/live/.keep
+!/proxy/letsencrypt/archive/.keep
+
+/greenlight/app*
+/greenlight/.env
+!/greenlight/.keep
+/greenlight/log*
+/greenlight/db*
+
+/postgres/*

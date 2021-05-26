@@ -1,0 +1,17 @@
+DOMAIN_ROOT=blindside-dev.com
+DOMAIN_SUB=xlab
+NGINX_HOSTNAME=xlab.blindside-dev.com
+
+## Set the hostname using your own domain (Required)
+## HOST_NAME=lti.<JOHN>.blindside-dev.com
+
+## Use only with postgres instance outside the one pre-packaged with docker-compose (Optional)
+## DATABASE_URL=postgres://myuser:mypass@localhost
+
+## Use with a repo other than the default "bigbluebutton" (Optional)
+## DOCKER_REPO=my-repo
+## Use with a tag other than the default "latest" (Optional)
+## DOCKER_TAG=my-tag
+
+## Site Template to be used by the nginx as a proxy (Optional)
+## SITES_TEMPLATE=<docker>|local
