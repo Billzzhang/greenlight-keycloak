@@ -16,7 +16,7 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      - NGINX_HOSTNAME=${HOST_NAME:-xlab.blindside-dev.com}
+      - NGINX_HOSTNAME=${NGINX_HOSTNAME:-xlab.blindside-dev.com}
     depends_on:
       - greenlight
       - keycloak
@@ -59,24 +59,24 @@ services:
       driver: journald
     env_file: ./greenlight/.env
     environment:
-      - DOMAINNAME=${DOMAIN_SUB:-xlab}.${DOMAIN_ROOT:-blindside-dev.com}
-      - DATABASE_URL=postgresql://postgres:password@postgres:5432/gl_dev_rna1
+      - DOMAINNAME=${NGINX_HOSTNAME:-xlab.blindside-dev.com}
+      - DATABASE_URL=${DATABASE_URL:-postgresql://postgres:password@postgres:5432/gl}
       - DB_ADAPTER=postgresql
       - DB_HOST=postgres
       - DB_PORT=5432
       - DB_NAME=gl_dev_rna1
       - DB_USERNAME=postgres
       - DB_PASSWORD=password
-      - GL_CALLBACK_URL=https://gl.${DOMAIN_SUB:-xlab}.${DOMAIN_ROOT:-blindside-dev.com}
+      - GL_CALLBACK_URL=https://gl.${NGINX_HOSTNAME:-xlab.blindside-dev.com}
       - GREENLIGHT_SESSION_DOMAIN=${DOMAIN_ROOT:-blindside-dev.com}
-      - URL_HOST=gl.${DOMAIN_SUB:-xlab}.${DOMAIN_ROOT:-blindside-dev.com}
+      - URL_HOST=gl.${NGINX_HOSTNAME:-xlab.blindside-dev.com}
   keycloak:
     image: jboss/keycloak:latest
     container_name: keycloak
     restart: unless-stopped
     volumes:
-      - ./proxy/letsencrypt/live/kc.bill.blindside-dev.com/cert.pem:/etc/x509/https/tls.crt
-      - ./proxy/letsencrypt/live/kc.bill.blindside-dev.com/privkey.pem:/etc/x509/https/tls.key
+      - ./proxy/letsencrypt/live/kc.$NGINX_HOSTNAME/cert.pem:/etc/x509/https/tls.crt
+      - ./proxy/letsencrypt/live/kc.$NGINX_HOSTNAME/privkey.pem:/etc/x509/https/tls.key
     environment:
       - PROXY_ADDRESS_FORWARDING=true
       - DB_VENDOR=postgres
@@ -85,8 +85,8 @@ services:
       - DB_USER=postgres
       - DB_SCHEMA=public
       - DB_PASSWORD=password
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=Password!
+      - KEYCLOAK_USER=${KEYCLOAK_USERNAME:-admin}
+      - KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD:-Password!}
     ports:
       - 9990:8080
       - 9991:8443

@@ -1,12 +1,12 @@
-DOMAIN_ROOT=blindside-dev.com
-DOMAIN_SUB=xlab
-NGINX_HOSTNAME=xlab.blindside-dev.com
-
 ## Set the hostname using your own domain (Required)
-## HOST_NAME=lti.<JOHN>.blindside-dev.com
+## NGINX_HOSTNAME=xlab.blindside-dev.com
+
+## KEYCLOAK admin username and password
+## KEYCLOAK_USERNAME=
+## KEYCLOAK_PASSWORD=
 
 ## Use only with postgres instance outside the one pre-packaged with docker-compose (Optional)
-## DATABASE_URL=postgres://myuser:mypass@localhost
+## DATABASE_URL=postgresql://postgres:password@postgres:5432/gl
 
 ## Use with a repo other than the default "bigbluebutton" (Optional)
 ## DOCKER_REPO=my-repo
