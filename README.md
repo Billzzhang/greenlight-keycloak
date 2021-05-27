@@ -139,3 +139,38 @@ By default, the admin console can be accessed with username: `admin` password: `
 ```
 https://kc.<JOHN>.blindside-dev.com/
 ```
+
+## Setup
+### Using keycloak with greenlight using OIDC
+
+Log into Keycloak 
+
+(Optional) Create a realm for greenlight by hovering "master" dropdown and clicking new realm:
+![image](https://user-images.githubusercontent.com/21375588/119866764-29a1e580-beeb-11eb-8a18-39370c39a5fb.png)
+
+In realm settings > Login, enable user registration and remember to click save.\
+In clients, click create and give an appropriate client id (Ex: `greenlight`)\
+Set the access type to confidential, and fill out redirect url and web origins.
+Ex configuration:
+![image](https://user-images.githubusercontent.com/21375588/119872156-2873b700-bef1-11eb-91f5-d1bc291a0466.png)
+Copy `Client ID` in the admin console on the same page and paste it into `greenlight/.env` under `OPENID_CONNECT_CLIENT_ID`\
+Under the same page/client, click on the credentials tab and copy and paste it into `greenlight/.env` under `OPENID_CONNECT_CLIENT_SECRET`
+ 
+Go back to the Realm settings on the sidebar and click on the link `OpenID Endpoint Configuration` where you will find the issuer.\
+Copy the `issuer` and paste it into `greenlight/.env` under `OPENID_CONNECT_ISSUER`\
+In addition, fill out the `OAUTH2_REDIRECT` with the appropriate URL.
+Ex sample:
+```
+OPENID_CONNECT_CLIENT_ID=greenlight
+OPENID_CONNECT_CLIENT_SECRET=efee718a-9aec-4e08-a1b0-99a96ef70936
+OPENID_CONNECT_ISSUER=https://kc.test.bill.blindside-dev.com/auth/realms/greenlight
+OPENID_CONNECT_HD=
+OPENID_CONNECT_UID_FIELD=
+
+# OAUTH2_REDIRECT allows you to specify the redirect_url passed to oauth on sign in.
+# It is useful for cases when Greenlight is deployed behind a Network Load Balancer or proxy
+OAUTH2_REDIRECT=https://gl.test.bill.blindside-dev.com/
+```
+ 
+Finally, restart the deployment and signing up using OIDC should be possible
+ 
