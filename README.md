@@ -15,7 +15,7 @@ gl.<JOHN>.blindside-dev.com.     CNAME   <JOHN>.blindside-dev.com.     60
 kc.<JOHN>.blindside-dev.com.     CNAME   <JOHN>.blindside-dev.com.     60
 ```
 
-## Steps
+## Installation
 
 Clone this repository
 
@@ -32,6 +32,12 @@ cp dotenv .env
 Edit the .env file located in the root of the project
 ```
 vi .env
+```
+
+Copy the dotenv in the greenlight folder:
+```
+cp greenlight/dotenv greenlight/.env
+mkdir greenlight/app
 ```
 
 Ex: Configuration .env
@@ -101,17 +107,19 @@ Repeat the Letsencrypt procedure for
 ```
 
 Copy the certificates to your greenlight-keycloak directory. Although /etc/letsencrypt/live/ holds the latest certificate, they are only symbolic links. The real files must be copied and renamed
+First create an empty directory:
+```
+mkdir -p proxy/letsencrypt/live
+```
 ```
 cp -R /etc/letsencrypt/archive/gl.<JOHN>.blindside-dev.com <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live
-cp -R /etc/letsencrypt/archive/gll.<JOHN>.blindside-dev.com <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live
-cp -R /etc/letsencrypt/archive/lb5.<JOHN>.blindside-dev.com <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live
-cp -R /etc/letsencrypt/archive/rs.<JOHN>.blindside-dev.com <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live
+cp -R /etc/letsencrypt/archive/kc.<JOHN>.blindside-dev.com <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live
 ```
 ```
-mv <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live/gl.<JOHN>.blindside-dev.com/cert.pem
-mv <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live/gl.<JOHN>.blindside-dev.com/chain.pem
-mv <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live/gl.<JOHN>.blindside-dev.com/fullchain.pem
-mv <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live/gl.<JOHN>.blindside-dev.com/privkey.pem
+mv <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live/gl.<JOHN>.blindside-dev.com/cert1.pem <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live/gl.<JOHN>.blindside-dev.com/cert.pem
+mv <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live/gl.<JOHN>.blindside-dev.com/chain1.pem <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live/gl.<JOHN>.blindside-dev.com/chain.pem
+mv <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live/gl.<JOHN>.blindside-dev.com/fullchain1.pem <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live/gl.<JOHN>.blindside-dev.com/fullchain.pem
+mv <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live/gl.<JOHN>.blindside-dev.com/privkey1.pem <YOUR ROOT>/greenlight-keycloak/proxy/letsencrypt/live/gl.<JOHN>.blindside-dev.com/cert.pem
 ```
 And do the same with `kc`
 
@@ -125,4 +133,9 @@ docker-compose up
 If everything goes well, you will see all the containers starting and at the end you will have access to greenlight through (or something similar):
 ```
 https://gl.<JOHN>.blindside-dev.com/
+```
+and you will be able to access keycloak through (something similar):
+By default, the admin console can be accessed with username: `admin` password: `Password!`
+```
+https://kc.<JOHN>.blindside-dev.com/
 ```
