@@ -174,3 +174,26 @@ OAUTH2_REDIRECT=https://gl.test.bill.blindside-dev.com/
  
 Finally, restart the deployment and signing up using OIDC should be possible
  
+## Using a SAML Identity Provider with Azure
+ 
+1. In the Azure Portal, go to Azure Active Directory and ensure that you're a global administrator.
+ If you're not a global administrator, go to `Overview` on the sidebar, click `Create a Tenant` and create a tenant with custom configuration.
+ Ex: ![image](https://user-images.githubusercontent.com/21375588/120690091-c7109280-c472-11eb-92df-fd045150952e.png)
+2. Go to App registration on the sidebar and create a new registration by clicking `New Registration` up top.
+3. Give your custom name and a redirect url that is the realm URL on your keycloak server. If you can't find it, it is provided in the `entityID` in SAML 2.0 Identity metadata at the Endpoints in the Keycloak Realm. The endpoint location is found here:
+ ![image](https://user-images.githubusercontent.com/21375588/120692213-7a7a8680-c475-11eb-806d-cbecfc77e35f.png)
+Example registration configuration:
+ ![image](https://user-images.githubusercontent.com/21375588/120692113-57e86d80-c475-11eb-9358-3e440a3bd5a5.png)
+4. Click `Add an Application ID URI` and on the next page, click `Set` at the top of the page. Fill it with the same url as the redirect URL
+ Ex:![image](https://user-images.githubusercontent.com/21375588/120693200-b8c47580-c476-11eb-8fc4-2da09a982f2d.png)
+ Setting the URL:![image](https://user-images.githubusercontent.com/21375588/120693275-d09bf980-c476-11eb-90b3-718605a410d6.png)
+ Note: if you encounter an error, you may need to go back to Azure Active Directory and add your domain to the custom domain names
+5. Go back to the app overview and click `Endpoints` at the top of the page. Copy the `Federation Metadata document` URL for later 
+ Ex: ![image](https://user-images.githubusercontent.com/21375588/120694534-566c7480-c478-11eb-88db-d6146d956c8b.png)
+6. Go back to keycloak and go to `Identity Providers` on the sidebar to create a `SAML v2.0` identity provider
+7. Go to the bottom of the page an paste the `Federation Metadata document` URL into the `Import from URL` and click `Import`
+ Ex: ![image](https://user-images.githubusercontent.com/21375588/120695601-941dcd00-c479-11eb-941a-35fc522464eb.png)
+8. Back at the top, give your custom Alias and Display name and scroll back to the bottom and save.
+
+
+ 
