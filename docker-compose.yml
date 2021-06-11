@@ -77,6 +77,7 @@ services:
     volumes:
       - ./proxy/letsencrypt/live/kc.$NGINX_HOSTNAME/cert.pem:/etc/x509/https/tls.crt
       - ./proxy/letsencrypt/live/kc.$NGINX_HOSTNAME/privkey.pem:/etc/x509/https/tls.key
+      # - ./keycloak/themes/custom:/opt/jboss/keycloak/themes/greenlight
     environment:
       - PROXY_ADDRESS_FORWARDING=true
       - DB_VENDOR=postgres
